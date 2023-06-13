@@ -1,0 +1,64 @@
+token based authentication
+In this authentication method, we store the token on the client side, rather than the old session based
+authentication where we stored the session information via cookies..
+
+There are 3 major parts of a JWT
+header 
+payload
+signature
+
+the typical structure of JWT response is: header.payload.signature
+
+
+The client attaches JWT authorization with bearer prefix as:
+Authorization: Bearer [header].[payload].[signature]
+
+
+
+the user can do the following actions here:
+1. user can signup to create a new account
+2. the user can login with the registered userid and password
+
+-> the user information is stored in postgresql database
+-> we create a ACL based on the role with which the user register's themselves
+
+
+A legal JWT must be added to the HTTP x-access token Header if client tries to access protected resources
+
+
+the middlewares that are going to be created here will:
+1. JWT auth middleware: verify signup and verify token
+2. authorization middleware: check the assigned role's to the user
+
+hstore data type for storing sets of key/value pairs within a single PostgreSQL value
+
+
+// what is the function of pool in postgres
+
+ pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
+
+
+max: maximum number of connection in pool
+min: minimum number of connection in pool
+idle: maximum time, in milliseconds, that a connection can be idle before being released
+acquire: maximum time, in milliseconds, that pool will try to get connection before throwing error
+
+
+
+//checkout sequelize constructor
+// checkout json web token
+
+
+By using sequelize we don't need to write CRUD functions, sequelize supports all of them
+
+
+create a new user---------create(object)
+find a user by id---------findByPk(id)
+find a user by email------findOne({where:(email)})
+get all users-------------findAll()
+find all users by user name-findAll({where:(username)})
